@@ -1,4 +1,4 @@
-# Veeam USAPI REST Role for NetApp ONTAP
+# Veeam USAPI REST Role for NetApp ONTAP (FAS/AFF)
 
 These two Ansible playbooks create a REST access-control role and an associated login user on a NetApp ONTAP cluster, or remove both again. They are required for the Veeam NetApp ONTAP USAPI Plug-In integration.
 
