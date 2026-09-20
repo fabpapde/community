@@ -69,9 +69,9 @@ This order is deliberate, since ONTAP will not allow deleting a role while a use
 | `/api/cluster` | readonly |
 | `/api/cluster/jobs` | readonly |
 | `/api/cluster/licensing/access-tokens` | read_create |
-| `/api/cluster/licensing/licenses` | readonly |
-| `/api/cluster/metrocluster` | readonly |
-| `/api/cluster/nodes` | readonly |
+| `/api/cluster/licensing/licenses` | readonly (cluster level only) |
+| `/api/cluster/metrocluster` | readonly (cluster level only)  |
+| `/api/cluster/nodes` | readonly (cluster level only)  |
 | `/api/cluster/peers` | read_create |
 | `/api/network/ip/interfaces` | readonly |
 | `/api/protocols/nfs/export-policies` | all |
