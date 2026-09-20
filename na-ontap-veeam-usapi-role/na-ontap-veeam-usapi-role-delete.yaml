@@ -1,0 +1,49 @@
+---
+- name: Remove Veeam USAPI REST role and user from ONTAP cluster
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  collections:
+    - netapp.ontap
+
+  vars:
+    role_name: veeam-usapi-rest-role
+    login_user_name: svc-veeam-ontap
+
+  vars_prompt:
+    - name: netapp_password
+      prompt: "ONTAP admin password (see --limit target for which cluster)"
+      private: true
+
+  tasks:
+    - name: Ensure login {{ login_user_name }} does not exist
+      netapp.ontap.na_ontap_user:
+        hostname: "{{ netapp_hostname | default(ansible_host) | default(inventory_hostname) }}"
+        username: "{{ netapp_username | default(ansible_user) }}"
+        password: "{{ netapp_password }}"
+        https: true
+        validate_certs: false
+        state: absent
+        name: "{{ login_user_name }}"
+        applications: http
+        authentication_method: password
+      register: user_result
+
+    - name: Show user removal result
+      ansible.builtin.debug:
+        msg: "User {{ login_user_name }} removed: {{ user_result.changed }}"
+
+    - name: Ensure role {{ role_name }} does not exist
+      netapp.ontap.na_ontap_user_role:
+        hostname: "{{ netapp_hostname | default(ansible_host) | default(inventory_hostname) }}"
+        username: "{{ netapp_username | default(ansible_user) }}"
+        password: "{{ netapp_password }}"
+        https: true
+        validate_certs: false
+        state: absent
+        name: "{{ role_name }}"
+      register: role_result
+
+    - name: Show role removal result
+      ansible.builtin.debug:
+        msg: "Role {{ role_name }} removed: {{ role_result.changed }}"
