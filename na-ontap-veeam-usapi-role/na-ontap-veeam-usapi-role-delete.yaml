@@ -8,7 +8,7 @@
 
   vars:
     role_name: veeam-usapi-rest-role
-    login_user_name: svc-veeam-ontap
+    login_user_name: <username>
 
   vars_prompt:
     - name: netapp_password
