@@ -21,6 +21,10 @@ These two Ansible playbooks create a REST access-control role and an associated 
 
 Both playbooks run against `localhost` (`connection: local`) and take the cluster hostname/username as extra vars — a separate Ansible inventory is not required.
 
+## Before Running
+
+Replace the `<username>` placeholder in the commands below with the actual ONTAP admin username before executing either playbook. The same applies to `<cluster-hostname-or-ip>` — both placeholders must be adjusted to match your environment.
+
 ## Password Handling
 
 The ONTAP admin password (and, when creating, the password for the new login user) is prompted for interactively and is never written to the playbook, the shell history, or the Ansible log. The corresponding task when creating the user is additionally protected with `no_log: true`.
@@ -32,7 +36,7 @@ The ONTAP admin password (and, when creating, the password for the new login use
 ```bash
 ansible-playbook create_veeam_usapi_rest_role.yaml \
   -e "netapp_hostname=<cluster-hostname-or-ip>" \
-  -e "netapp_username=<admin-user>"
+  -e "netapp_username=<username>"
 ```
 
 You will be prompted for two passwords: the ONTAP admin password and the password for the new login user.
@@ -42,7 +46,7 @@ You will be prompted for two passwords: the ONTAP admin password and the passwor
 ```bash
 ansible-playbook delete_veeam_usapi_rest_role.yaml \
   -e "netapp_hostname=<cluster-hostname-or-ip>" \
-  -e "netapp_username=<admin-user>"
+  -e "netapp_username=<username>"
 ```
 
 Only the ONTAP admin password is prompted for here, since nothing new is being created.
