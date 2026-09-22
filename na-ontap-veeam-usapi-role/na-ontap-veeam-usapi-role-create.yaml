@@ -8,7 +8,7 @@
 
   vars:
     role_name: veeam-usapi-rest-role
-    login_user_name: svc-veeam-ontap
+    login_user_name: <username>
 
     # One entry per required API endpoint, matching the access levels
     # from the source security login rest-role create commands.
