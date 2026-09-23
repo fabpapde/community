@@ -1,0 +1,33 @@
+# Create Veeam US API role:
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/cluster
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/cluster/jobs
+security login rest-role create -role veeam-usapi-rest-role -access read_create -api /api/cluster/licensing/access-tokens
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/cluster/licensing/licenses
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/cluster/metrocluster
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/cluster/nodes
+security login rest-role create -role veeam-usapi-rest-role -access read_create -api /api/cluster/peers
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/network/ip/interfaces
+security login rest-role create -role veeam-usapi-rest-role -access all -api /api/protocols/nfs/export-policies
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/protocols/nfs/services
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/protocols/san/fcp/services
+security login rest-role create -role veeam-usapi-rest-role -access all -api /api/protocols/san/igroups
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/protocols/san/iscsi/services
+security login rest-role create -role veeam-usapi-rest-role -access all -api /api/protocols/san/lun-maps
+security login rest-role create -role veeam-usapi-rest-role -access all -api /api/snapmirror/relationships
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/storage/aggregates
+security login rest-role create -role veeam-usapi-rest-role -access all -api /api/storage/luns
+security login rest-role create -role veeam-usapi-rest-role -access all -api /api/storage/qtrees
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/storage/snaplock/compliance-clocks
+security login rest-role create -role veeam-usapi-rest-role -access all -api /api/storage/volumes
+security login rest-role create -role veeam-usapi-rest-role -access readonly -api /api/svm/svms
+
+# Show the Security Role:
+security login rest-role show -role veeam-usapi-rest-role
+security login rest-role show -role veeam-usapi-rest-role -instance
+
+# Create the user and assign the security role:
+security login create -user-or-group-name <username> -application http -authentication-method password -role veeam-usapi-rest-role
+
+# Show the user:
+security login show -user-or-group-name <username>
+security login show -user-or-group-name <username> -instance
